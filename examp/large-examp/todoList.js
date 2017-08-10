@@ -2,6 +2,10 @@ const expect = require('expect');
 const deepFreeze = require('deep-freeze');
 
 const redux = require('redux');
+
+const React = require('react');
+const ReactDom = require('react-dom');
+
 // state is described as a list of todos
 
 /**
