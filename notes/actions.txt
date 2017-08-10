@@ -1,0 +1,12 @@
+Describing State Change With Actions:
+
+The second principal of Redux, is that the state tree is read only, you cannot change this representation of state by writing to it.
+
+If you wish to change the state, you need to dispatch an action.
+
+An Action is a plain js object that describes the change.
+
+Just as the state tree is the minimal representation of application state, the action is a minimal representation of the change to state.
+
+The structure of the Action object is flexible, the only requisite is a 'type' property which is not undefined. It's suggested that a string be used, since strings are serializable. The Action type could, if for instance we had a counter with increment and decrement buttons, be either 'INCREMENT' or 'DECREMENT'.
+

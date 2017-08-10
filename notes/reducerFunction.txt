@@ -1,0 +1,10 @@
+The Reducer Function:
+
+It's a tenant of React - and the idea has gained ground elsewhere - that the UI or View layer is most predictable when it is described as a pure function of the application state.
+
+Redux means to complement this approach with the idea that state mutation within an app should also be described as pure functions, which takes the previous state and the action being dispatched and returns the new state. 
+
+Inside Redux applications the pure function that handles the return of new stat is the Reducer.
+
+Note that returning new state does not mean Redux must be slow, the Reducer returns state where unchanged properties of the state tree object hold references to their still up to date counter parts in older version of application state.
+

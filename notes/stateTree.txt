@@ -1,0 +1,6 @@
+Single Immutable State Tree.
+
+The first principal of Redux is that the entire state of the application is represented as a single JS object, called the state or state tree.
+
+This means that all mutations to state are explicit. It's possible to log or keep track of every change of state.
+
