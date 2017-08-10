@@ -1,0 +1,8 @@
+# editor #
+.vscode/
+
+# node modules #
+node_modules/
+
+# notes #
+notes/
