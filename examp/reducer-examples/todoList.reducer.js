@@ -3,25 +3,42 @@ const deepFreeze = require('deep-freeze');
 
 // state is described as a list of todos
 
+/**
+ * just as in a function,
+ * we want to limit our reducers to addressing one concern
+ * so we have separate reducers for handling our array of entities/todos
+ * and our individual entities/todos
+ */
+
+const todo = (state, action) => {
+    switch(action.type) {
+        case 'ADD_TODO':
+            return {
+                id: action.id,
+                text: action.text,
+                completed: false
+            };
+        case 'TOGGLE_TODO':
+            if (state.id !== action.id) {
+                return state;
+            }
+            return Object.assign({}, state, {
+                completed: !state.completed
+            });
+        default:
+            return state;
+    }
+};
+
 const todos = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return [
-                ...state, {
-                    id: action.id,
-                    text: action.text,
-                    completed: false
-                }
+                ...state,
+                todo(undefined, action)
             ];
         case 'TOGGLE_TODO':
-            return state.map(todo => {
-                if (todo.id !== action.id) {
-                    return todo;
-                }
-                return Object.assign({}, todo, {
-                    completed: !todo.completed
-                });
-            });
+            return state.map(t => todo(t, action));
         default:
             return state;
     }
