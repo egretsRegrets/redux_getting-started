@@ -97,14 +97,28 @@ const visibilityFilter = (state = 'SHOW_ALL', action) => {
  * {todos: todos, visibilityFilter: visibilityFilter}
  * thanks to the es6 object literal shorthand notation.
  */
-const todoApp = redux.combineReducers({
-    todos,
-    visibilityFilter
-});
 
 // we can take combineReducers from redux; we can also implement it ourself
 
+const combineReducers = (reducers) => {
+    return(state = {}, action) => {
+        return Object.keys(reducers).reduce(
+            (nextState, key) => {
+                nextState[key] = reducers[key](
+                    state[key],
+                    action
+                );
+                return nextState;
+            },
+            {} // empty object is the first value for nextState
+        );
+    };
+};
 
+const todoApp = combineReducers({
+    todos,
+    visibilityFilter
+});
 
 // initialize store:
 const store = redux.createStore(todoApp);
